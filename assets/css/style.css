@@ -1,0 +1,20 @@
+body{
+    background-image: url("../images/pink_dust.png");
+
+
+}
+
+
+#main{
+    background-image: url("../images/cork-wallet.png");
+    text-align: center;
+    border-radius: 25px;
+    border: groove;
+    
+    margin:1%;
+}
+
+.start{
+    margin:5%;
+    align-content: center;
+}
