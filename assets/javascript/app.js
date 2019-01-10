@@ -7,84 +7,123 @@ $(document).ready(function () {
     var questions =[
        {
            question: "What famous director scared audiences out of swimming in 1975?",
-           answers:{
-            A: "Soderberg",
-            B: "Lucas",
-            C: "Speilberg",
-            D: "Howard"
-           },
-           correctAnswer: "C" 
+           answers:[
+             "Soderberg",
+             "Lucas",
+             "Speilberg",
+            "Howard"
+           ],
+           validAnswer: 2 
        },
 
        {
-           question: "Quentin Tarantino burst on the scene with what breakout film at the Sundance Film Festival?",
-           answers:{
-               A: "Kill Bill",
-               B: "Pulp Fiction",
-               C: "Jackie Brown",
-               D: "Reservior Dogs"
-           },
-           correctAnswer: "D"
+           question: "Quentin Tarantino first bursted on the scene with what breakout film at the Sundance Film Festival?",
+           answers:[
+                "Kill Bill",
+                "Pulp Fiction",
+                "Jackie Brown",
+                "Reservior Dogs"
+           ],
+           validAnswer: 3
        },
 
        {
-       question: "The first feature to use technicolor film was...",
-       answers:{
-           A: "Singing in the Rain",
-           B: "Wizard of Oz",
-           C: "Gone With The Wind",
-           D: "Mary Poppins"
-       },
-       correctAnswer:"B"
+       question: "The first feature to use technicolor was...",
+       answers:[
+            "Singing in the Rain",
+           "Wizard of Oz",
+            "Gone With The Wind",
+            "Mary Poppins"
+       ],
+       validAnswer: 1
        },
 
        {
            question: "What famous actor is known for his memorable portrayal of an evil oil magnate who says 'I Drink your milkshake!",
-           answers:{
-               A: "Daniel Day Lewis",
-               B: "Robert Deniro",
-               C: "Robert Redford",
-               D: "Phillip Seymour Hoffman"
-           },
-           correctAnswer:"A"
+           answers:[
+                "Daniel Day Lewis",
+                "Robert Deniro",
+                "Robert Redford",
+                "Phillip Seymour Hoffman"
+           ],
+           validAnswer: 0
        },
 
        {
            question: "What director is known for doing over one hundred takes for a single scene and has made the films 'Zodiac', 'Alien 3', and 'The Game' ",
-           answers:{
-            A:"Frank Darabont",
-            B:"David Fincher",
-            C:"Darren Aronofsky",
-            D:"David O. Russel"
-           },
-           correctAnswer:"B"
+           answers:[
+            "Frank Darabont",
+            "David Fincher",
+            "Darren Aronofsky",
+            "David O. Russel"
+           ],
+           validAnswer: 1
         }
 
    ];
 
+    var userPick;
     var timeLeft = 30;
-    var score= 0;
+    var correctAnswer = 0;
+    var incorrectAnswer= 0;
+    var question= 0;
    
    
 $('.start').click(function(){
-        function clearBox(){
-    $('.quizWrapper').innerHTML = "";
-};
+//         function clearBox(){
+//    $('.quizWrapper').innerHTML = "";
+// };
 
-clearBox();
-$('.quizWrapper').text("test")
-var timeCount = $('#timer');
 
-var timerId = setInterval(countdown, 1000);
-    
-    function countdown() {
-      if (timeLeft == 0) {
-        clearTimeout(timerId);
-        doSomething();
-      } else {
-        timeCount.innerHTML = timeLeft + ' seconds remaining';
-        timeLeft--;
-      }
+$(this).hide();
+count = setInterval(timer, 3000); 
+showQuestions();
+}); 
+
+function timer(){
+    count--;
+if (count <= 0) {
+ clearInterval(count);
+//  showResults();
+}
+
+ $("#timer").html("Time remaining: " + count + " seconds");
+}
+
+function showQuestions(){
+
+    $("#quiz").html(questions[0].question);
+    question ++;
+
+    var answerArr = questions[0].answers;
+    var buttonsArr = []; 
+
+    for (let i = 0; i < answerArr.length; i++) {
+        var button = $('<button>');
+        button.text(answerArr[i]);
+        button.attr('data-id', i);
+        $('#choices_div').append(button);
+       }
+
+       $('#choices_div').on('click', 'button', function(e){
+        userPick = $(this).data("id");
+        disneyQuestion[0].validAnswer;
+        if(userPick != disneyQuestion[0].validAnswer) {
+       
+        $('#choices_div').text("Wrong Answer!");
+        incorrectAnswer++;
+       
+       } else if (userPick === disneyQuestion[0].validAnswer) {
+       $('#choices_div').text("Correct!");
+       correctAnswer++;
+       
+       }
+
+    function showResults(){
+ $("#quiz").html("Correct Answers:" + correctAnswer, "Incorrect Answers:" + incorrectAnswer)
     }
-    })
-});
+showResults
+})
+}
+})
+
