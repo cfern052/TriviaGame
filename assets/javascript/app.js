@@ -70,19 +70,32 @@ $(document).ready(function () {
     var question = 0;
     var count=30;
     var results = {};
+    var counter;
 
     $('.start').click(function () {
         $(this).hide();
-        count = setInterval(timer, 30000);
+        counter = setInterval(timer, 1000);
         showQuestions();
     });
 
     function timer() {
         count--;
-        if (count <= 0) {
-            clearInterval(count);
-            return;
-            //  showResults();
+        if (count == 0) {
+            clearInterval(counter);
+           // return;
+            showResults();
+            function showResults(){
+                $('#quiz').empty();
+                $('#timer').html('');
+                for(var i = 0; i < questions.length; i ++) {
+                    if( results[i] == questions[i].validAnswer){
+                        correctAnswer++
+                    }else {
+                        incorrectAnswer--
+                    }
+                }
+                $('#quiz').html(`<div>You had ${correctAnswer} correct answers.</div><br><div>You had ${incorrectAnswer} wrong answers<br><button id=retry attr= showQuestions()>Retry?</button>`)
+            }
         }
 
         $("#timer").html("Time remaining: " + count + " seconds");
@@ -105,7 +118,9 @@ $(document).ready(function () {
            console.log(results);
         })
         $('#quiz').append('<button id="submit">Submit</button>')
-        $('#submit').on('click', function(){
+        $('#submit').on('click', function showResults(){
+            $('#quiz').empty();
+            $('#timer').text("Timeout!")
             for(var i = 0; i < questions.length; i ++) {
                 if( results[i] == questions[i].validAnswer){
                     correctAnswer++
@@ -113,8 +128,17 @@ $(document).ready(function () {
                     incorrectAnswer--
                 }
             }
-            $('#quiz').html(`<div>You had ${correctAnswer} correct answers.</div>`)
+            // var newButton = $('<button>');
+            // newButton.addClass("Retry");
+            // newButton.text("Retry?");
+            // $('.rety').on("click", showQuestions());
+            // $('#quiz').append(newButton);
+            
+            $('#quiz').html(`<div>You had ${correctAnswer} correct answers.</div><br><div>You had ${incorrectAnswer} wrong answers<br><button class=retry attr= showQuestions()>Retry?</button>`)
+                // $('.retry').on( "click", showQuestions());
+            
         });
+        
      }
 
         // for (var i = 0; i < questions.length; i++){

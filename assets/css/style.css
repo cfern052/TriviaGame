@@ -30,6 +30,10 @@ body{
     background-color: red;
 }
 
+.option:active{
+    background-color:red;
+}
+
 #quiz{
     font-weight: bold;
 }
