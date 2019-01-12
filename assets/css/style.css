@@ -18,3 +18,18 @@ body{
     margin:5%;
     align-content: center;
 }
+
+.option{
+    border:1px solid black;
+    padding:5px;
+    margin:5px;
+    background-color: white;
+}
+
+.option:hover{
+    background-color: red;
+}
+
+#quiz{
+    font-weight: bold;
+}

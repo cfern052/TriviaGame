@@ -68,12 +68,12 @@ $(document).ready(function () {
     var correctAnswer = 0;
     var incorrectAnswer = 0;
     var question = 0;
-    var count;
+    var count=30;
     var results = {};
 
     $('.start').click(function () {
         $(this).hide();
-        count = setInterval(timer, 1000);
+        count = setInterval(timer, 30000);
         showQuestions();
     });
 
