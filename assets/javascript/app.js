@@ -80,13 +80,15 @@ $(document).ready(function () {
 
     function timer() {
         count--;
-        if (count == 0) {
-            clearInterval(counter);
-           // return;
+        if (count == 0 ) {
+            setTimeout(counter);
+            return false;
             showResults();
             function showResults(){
                 $('#quiz').empty();
                 $('#timer').html('');
+                setTimeout(counter);
+                
                 for(var i = 0; i < questions.length; i ++) {
                     if( results[i] == questions[i].validAnswer){
                         correctAnswer++
@@ -94,11 +96,15 @@ $(document).ready(function () {
                         incorrectAnswer--
                     }
                 }
-                $('#quiz').html(`<div>You had ${correctAnswer} correct answers.</div><br><div>You had ${incorrectAnswer} wrong answers<br><button id=retry attr= showQuestions()>Retry?</button>`)
+                $('#quiz').html(`<div>You had ${correctAnswer} correct answers.</div><br><div>You had ${incorrectAnswer} wrong answers<br><button id=retry attr= function showQuestions()>Retry?</button>`)
             }
         }
 
         $("#timer").html("Time remaining: " + count + " seconds");
+    }
+
+    function stop(){
+        clearInterval(counter);
     }
 
     function showQuestions() {
@@ -119,13 +125,15 @@ $(document).ready(function () {
         })
         $('#quiz').append('<button id="submit">Submit</button>')
         $('#submit').on('click', function showResults(){
+            stop();
             $('#quiz').empty();
-            $('#timer').text("Timeout!")
+            $('#timer').html("Timeout!");
+            clearTimeout(counter);
             for(var i = 0; i < questions.length; i ++) {
                 if( results[i] == questions[i].validAnswer){
                     correctAnswer++
                 }else {
-                    incorrectAnswer--
+                    incorrectAnswer++
                 }
             }
             // var newButton = $('<button>');

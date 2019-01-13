@@ -30,7 +30,7 @@ body{
     background-color: red;
 }
 
-.option:active{
+.option:focus{
     background-color:red;
 }
 
