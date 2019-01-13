@@ -9,10 +9,10 @@ $(document).ready(function () {
         {
             question: "What famous director scared audiences out of swimming in 1975?",
             answers: {
-               a : "Soderberg",
-               b : "Lucas",
-               c : "Speilberg",
-               d : "Howard"
+               a : "Steven Soderbergh",
+               b : "George Lucas",
+               c : "Steven Spielberg",
+               d : "Ron Howard"
             },
             validAnswer: 'c'
         },
@@ -43,7 +43,7 @@ $(document).ready(function () {
             question: "What famous actor is known for his memorable portrayal of an evil oil magnate who says 'I Drink your milkshake!",
             answers: {
                a: "Daniel Day Lewis",
-               b: "Robert Deniro",
+               b: "Robert De Niro",
                c: "Robert Redford",
                d: "Phillip Seymour Hoffman"
             },
@@ -56,7 +56,7 @@ $(document).ready(function () {
                 a:"Frank Darabont",
                 b:"David Fincher",
                 c:"Darren Aronofsky",
-                d:"David O. Russel"
+                d:"David O. Russell"
             },
             validAnswer: 'b'
         }
@@ -142,8 +142,13 @@ $(document).ready(function () {
             // $('.rety').on("click", showQuestions());
             // $('#quiz').append(newButton);
             
-            $('#quiz').html(`<div>You had ${correctAnswer} correct answers.</div><br><div>You had ${incorrectAnswer} wrong answers<br><button class=retry attr= showQuestions()>Retry?</button>`)
-                // $('.retry').on( "click", showQuestions());
+            $('#quiz').html(`<div>You had ${correctAnswer} correct answers</div><br><div>You had ${incorrectAnswer} wrong answers<br><button id=retry attr= showQuestions()>Retry?</button>`)
+                //  $("#retry").on( "click", restart());
+
+                //  function restart(){
+                //      $('#quiz').html("");
+                //      showQuestions();
+                //  }
             
         });
         
